@@ -23,26 +23,26 @@ spec:
   writeConnectionSecretToRef:
     name: sample-table3
     namespace: crossplane-system
----
-apiVersion: dynamodb.aws.crossplane.io/v1alpha1
-kind: Table
-metadata:
-  name: sample-table4
-spec:
-  forProvider:
-    region: eu-west-1
-    attributeDefinitions:
-      - attributeName: attribute1
-        attributeType: S
-    keySchema:
-      - attributeName: attribute1
-        keyType: HASH
-    billingMode: PAY_PER_REQUEST
-    streamSpecification:
-      streamEnabled: true
-      streamViewType: NEW_AND_OLD_IMAGES
-  providerConfigRef:
-    name: crossplane-provider-config # we changed it aws-config to crossplane-provider-config
-  writeConnectionSecretToRef:
-    name: sample-table4
-    namespace: crossplane-system
+# ---
+# apiVersion: dynamodb.aws.crossplane.io/v1alpha1
+# kind: Table
+# metadata:
+#   name: sample-table4
+# spec:
+#   forProvider:
+#     region: eu-west-1
+#     attributeDefinitions:
+#       - attributeName: attribute1
+#         attributeType: S
+#     keySchema:
+#       - attributeName: attribute1
+#         keyType: HASH
+#     billingMode: PAY_PER_REQUEST
+#     streamSpecification:
+#       streamEnabled: true
+#       streamViewType: NEW_AND_OLD_IMAGES
+#   providerConfigRef:
+#     name: crossplane-provider-config # we changed it aws-config to crossplane-provider-config
+#   writeConnectionSecretToRef:
+#     name: sample-table4
+#     namespace: crossplane-system
