@@ -1,0 +1,177 @@
+apiVersion: dynamodb.aws.crossplane.io/v1alpha1
+kind: Table
+metadata:
+  name: sample-table
+spec:
+  forProvider:
+    region: eu-west-1
+    attributeDefinitions:
+      - attributeName: attribute1
+        attributeType: S
+    keySchema:
+      - attributeName: attribute1
+        keyType: HASH
+      - attributeName: attribute2
+    billingMode: PAY_PER_REQUEST
+    provisionedThroughput:
+      readCapacityUnits: 1
+      writeCapacityUnits: 1
+    streamSpecification:
+      streamEnabled: true
+      streamViewType: NEW_AND_OLD_IMAGES
+  providerConfigRef:
+    name: crossplane-provider-config # we changed it aws-config to crossplane-provider-config
+  writeConnectionSecretToRef:
+    name: sample-table
+    namespace: crossplane-system
+---
+apiVersion: dynamodb.aws.crossplane.io/v1alpha1
+kind: Table
+metadata:
+  name: sample-table2
+spec:
+  forProvider:
+    region: eu-west-1
+    attributeDefinitions:
+      - attributeName: attribute1
+        attributeType: S
+      - attributeName: attribute2
+        attributeType: S
+    keySchema:
+      - attributeName: attribute1
+        keyType: HASH
+      - attributeName: attribute2
+        keyType: HASH
+    billingMode: PROVISIONED
+    provisionedThroughput:
+      readCapacityUnits: 1
+      writeCapacityUnits: 1
+    streamSpecification:
+      streamEnabled: true
+      streamViewType: NEW_AND_OLD_IMAGES
+  providerConfigRef:
+    name: crossplane-provider-config # we changed it aws-config to crossplane-provider-config
+  writeConnectionSecretToRef:
+    name: sample-table2
+    namespace: crossplane-system
+---
+apiVersion: dynamodb.aws.crossplane.io/v1alpha1
+kind: Table
+metadata:
+  name: sample-table3
+spec:
+  forProvider:
+    region: eu-west-1
+    attributeDefinitions:
+      - attributeName: attribute1
+        attributeType: S
+    keySchema:
+      - attributeName: attribute1
+        keyType: HASH
+    billingMode: PROVISIONED
+    provisionedThroughput:
+      readCapacityUnits: 1
+      writeCapacityUnits: 1
+    streamSpecification:
+      streamEnabled: true
+      streamViewType: NEW_AND_OLD_IMAGES
+  providerConfigRef:
+    name: crossplane-provider-config # we changed it aws-config to crossplane-provider-config
+  writeConnectionSecretToRef:
+    name: sample-table3
+    namespace: crossplane-system
+---
+apiVersion: dynamodb.aws.crossplane.io/v1alpha1
+kind: Table
+metadata:
+  name: sample-table4
+spec:
+  forProvider:
+    region: eu-west-1
+    attributeDefinitions:
+      - attributeName: attribute1
+        attributeType: S
+    keySchema:
+      - attributeName: attribute1
+        keyType: HASH
+    billingMode: PAY_PER_REQUEST
+    streamSpecification:
+      streamEnabled: true
+      streamViewType: NEW_AND_OLD_IMAGES
+  providerConfigRef:
+    name: crossplane-provider-config # we changed it aws-config to crossplane-provider-config
+  writeConnectionSecretToRef:
+    name: sample-table4
+    namespace: crossplane-system
+# ---
+# apiVersion: dynamodb.aws.crossplane.io/v1alpha1
+# kind: Table
+# metadata:
+#   name: sample-table5
+# spec:
+#   forProvider:
+#     region: eu-west-1
+#     attributeDefinitions:
+#       - attributeName: attribute1
+#         attributeType: S
+#     keySchema:
+#       - attributeName: attribute1
+#         keyType: HASH
+#     billingMode: PROVISIONED
+#     globalSecondaryIndexes:
+#       - indexName: indexOne
+#         keySchema:
+#         - attributeName: attribute1
+#           keyType: HASH
+#         projection:
+#           nonKeyAttributes:
+#           - ALL
+#           projectionType: KEYS_ONLY
+#         provisionedThroughput:
+#           readCapacityUnits: 1
+#           writeCapacityUnits: 1
+#     provisionedThroughput:
+#       readCapacityUnits: 1
+#       writeCapacityUnits: 2
+#     streamSpecification:
+#       streamEnabled: true
+#       streamViewType: NEW_AND_OLD_IMAGES
+#   providerConfigRef:
+#     name: crossplane-provider-config # we changed it aws-config to crossplane-provider-config
+#   writeConnectionSecretToRef:
+#     name: sample-table5
+#     namespace: crossplane-system
+# ---
+# apiVersion: dynamodb.aws.crossplane.io/v1alpha1
+# kind: Table
+# metadata:
+#   name: sample-table4
+# spec:
+#   forProvider:
+#     region: eu-west-1
+#     attributeDefinitions:
+#       - attributeName: attribute1
+#         attributeType: S
+#     keySchema:
+#       - attributeName: attribute1
+#         keyType: HASH
+#     billingMode: PROVISIONED
+#     globalSecondaryIndexes: 
+#       - indexName: attribute1Index
+#       - keySchema:
+#         - attributeName: attribute1
+#         - keyType: HASH
+#       - projection:
+#         projectionType: KEYS_ONLY
+#     provisionedThroughput:
+#       readCapacityUnits: 1
+#       writeCapacityUnits: 1
+#     streamSpecification:
+#       streamEnabled: true
+#       streamViewType: NEW_AND_OLD_IMAGES
+#   providerConfigRef:
+#     name: crossplane-provider-config # we changed it aws-config to crossplane-provider-config
+#   writeConnectionSecretToRef:
+#     name: sample-table4
+#     namespace: crossplane-system
+

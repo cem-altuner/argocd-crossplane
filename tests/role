@@ -1,0 +1,48 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::417732881703:root"
+            },
+            "Action": "sts:AssumeRole"
+        },
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::033319809012:user/platform-pipeline"
+            },
+            "Action": "sts:AssumeRole"
+        },
+        {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "eks.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        },
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::099558987540:oidc-provider/oidc.eks.eu-west-1.amazonaws.com/id/8D26A3F1ABE44D849DF229CD7A5A5B9E"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringLike": {
+                    "oidc.eks.eu-west-1.amazonaws.com/id/8D26A3F1ABE44D849DF229CD7A5A5B9E:aud": "sts.amazonaws.com",
+                    "oidc.eks.eu-west-1.amazonaws.com/id/8D26A3F1ABE44D849DF229CD7A5A5B9E:sub": [
+                        "system:serviceaccount:kube-system:aws-load-balancer-controller",
+                        "system:serviceaccount:crossplane-system:provider-aws-*",
+                        "system:serviceaccount:crossplane-system:crossplane",
+                        "system:serviceaccount:default:default"
+                    ]
+                }
+            }
+        }
+    ]
+}
